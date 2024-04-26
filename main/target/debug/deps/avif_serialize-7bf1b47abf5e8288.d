@@ -1,0 +1,10 @@
+/home/rbroadhead/develompent/personal_projects/Minify/main/target/debug/deps/libavif_serialize-7bf1b47abf5e8288.rmeta: /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/lib.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/boxes.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/constants.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/writer.rs
+
+/home/rbroadhead/develompent/personal_projects/Minify/main/target/debug/deps/libavif_serialize-7bf1b47abf5e8288.rlib: /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/lib.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/boxes.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/constants.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/writer.rs
+
+/home/rbroadhead/develompent/personal_projects/Minify/main/target/debug/deps/avif_serialize-7bf1b47abf5e8288.d: /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/lib.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/boxes.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/constants.rs /home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/writer.rs
+
+/home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/lib.rs:
+/home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/boxes.rs:
+/home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/constants.rs:
+/home/rbroadhead/.cargo/registry/src/index.crates.io-6f17d22bba15001f/avif-serialize-0.8.1/src/writer.rs:
