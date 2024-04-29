@@ -6,49 +6,27 @@ use std::path::Path;
 use std::fs::File;
 use std::io::Write;
 
-pub fn convert(file_path: &str, name: &str) {
-
-    let mut place: usize = 0;
- 
-    for (i, item) in file_path.chars().rev().enumerate() {
-        if item == '.' {
-            place = (file_path.len() - i).try_into().unwrap();
-            break;
-        }
-    } 
-    let format = &file_path[place..file_path.len()];
-
-    match format.to_lowercase().as_str() {
-       "png" => to_webp(file_path, name), 
-       "jpg" => to_webp(file_path, name),
-        _ => println!("Err: [File format not supported] {:?}", file_path), 
-    }
+pub struct ImgFile {
+    pub name: String,
+    pub format: String,
+    pub path: String,
+    pub replace: bool,
 }
+impl ImgFile {
+    pub fn to_webp(&self) {
+        println!("Converting to PNG {:?}", self.path);
 
-fn to_webp(file_path: &str, name: &str) {
-   let mut place: [usize; 2] = [0,0]; 
-   
-   for (i, item) in file_path.chars().rev().enumerate() {
-       match item{
-            '.' => place[1] = (file_path.len() -  i).try_into().unwrap(),
-            '/' => { place[0] = (file_path.len() -  i).try_into().unwrap(); break},
-            _ => continue,
-       }
-   } 
+        let img: DynamicImage = ImageReader::open(&self.path).unwrap().decode().unwrap();
 
-//   let format = "m_".to_owned() + &file_path[place[0]..place[1]-1];
-
-   let format = "m_".to_owned() + name; 
-
-    println!("Converting to PNG {:?}", file_path);
-
-    let img: DynamicImage = ImageReader::open(file_path).unwrap().decode().unwrap();
-
-    let encoder: Encoder = Encoder::from_image(&img).unwrap();
+        let encoder: Encoder = Encoder::from_image(&img).unwrap();
         
-    let webp: WebPMemory = encoder.encode(90f32);
+        let webp: WebPMemory = encoder.encode(90f32);
+         
+        let file_name = if self.replace {self.name.clone()} else {"m_".to_owned() + &self.name};
 
-    let output_path = Path::new("assets").join(format).with_extension("webp");
-    std::fs::write(&output_path, &*webp).unwrap();
-    println!("Saved to {:?}", output_path);
+        let output_path = Path::new("assets").join(file_name).with_extension("webp");
+        std::fs::write(&output_path, &*webp).unwrap();
+        println!("Saved to {:?}", output_path);
+
+    }
 }
