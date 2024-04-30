@@ -12,18 +12,21 @@ struct Args {
     #[arg(short, long, default_missing_value = "All")]
     file: Option<String>,
 
+    #[arg(short, long)]
+    quality: Option<f32>,
+
+    #[arg(short, long)]
+    replace: bool,
+
 }
 
 fn main() {
     let args = Args::parse();
 
-    
     let paths = fs::read_dir("./assets/").unwrap();
-    println!("{:?}", paths);
-
-
+//    println!("{:?}", args.quality);
+    
     for path in paths {
-     
 
         let path = path.unwrap().path().display().to_string();
         
@@ -41,7 +44,16 @@ fn main() {
             name: (path[place.0..place.1-1]).to_string(), 
             format: (path[place.1..path.len()]).to_string(),
             path: path,
-            replace: true,
+            replace: args.replace,
+            quality: match args.quality {
+                Some(x) => {
+                    if x * 10.0 > 100.0 {
+                        println!("{x} is not a valid value. \nplease enter a number between 1 and 10"); 
+                        break
+                    } else {x * 10.0}
+                 },
+                None => 100.0,
+            },
         };
         if img.name != args.file.clone().unwrap() {continue}; 
 

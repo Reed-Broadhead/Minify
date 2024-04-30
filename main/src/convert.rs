@@ -11,20 +11,24 @@ pub struct ImgFile {
     pub format: String,
     pub path: String,
     pub replace: bool,
+    pub quality: f32,
 }
 impl ImgFile {
     pub fn to_webp(&self) {
-        println!("Converting to PNG {:?}", self.path);
+        println!("Converting to PNG {:?}", &self.path);
 
         let img: DynamicImage = ImageReader::open(&self.path).unwrap().decode().unwrap();
 
         let encoder: Encoder = Encoder::from_image(&img).unwrap();
-        
-        let webp: WebPMemory = encoder.encode(90f32);
-         
-        let file_name = if self.replace {self.name.clone()} else {"m_".to_owned() + &self.name};
+       //90f32 
+        let webp: WebPMemory = encoder.encode(self.quality);
 
-        let output_path = Path::new("assets").join(file_name).with_extension("webp");
+        let output_path = Path::new("assets").join(&self.name).with_extension("webp");
+
+        let _ = if self.replace == true {
+             std::fs::remove_file(&self.path)
+        } else {Ok(())};
+        
         std::fs::write(&output_path, &*webp).unwrap();
         println!("Saved to {:?}", output_path);
 
