@@ -33,4 +33,8 @@ impl ImgFile {
         println!("Saved to {:?}", output_path);
 
     }
+    pub fn compress(&self) {
+            println!("Compressing {:?}", &self.path);
+    }
 }
+
