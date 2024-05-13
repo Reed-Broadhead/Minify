@@ -51,14 +51,14 @@ fn main() {
 }
 fn process_args(file: &Option<String>, quality: &Option<f32>, replace: &bool, operation: &str, file_type: &Option<String>) {
 
-    let paths = fs::read_dir("./assets/").unwrap();
+    let paths = fs::read_dir("./").unwrap();
 
     let mut operate: bool = false;
     
     for path in paths {
 
         let path = path.unwrap().path().display().to_string();
-        
+
         let mut place = (0,0);
 
         for (i, item) in path.chars().rev().enumerate() {
@@ -68,7 +68,7 @@ fn process_args(file: &Option<String>, quality: &Option<f32>, replace: &bool, op
                 _ => continue,
             }
         }
-        
+        if place.0 == 0 || place.1 == 0 {continue}; 
         let img = convert::ImgFile{
             name: (path[place.0..place.1-1]).to_string(), 
             format: (path[place.1..path.len()]).to_string(),
@@ -117,8 +117,10 @@ fn process_args(file: &Option<String>, quality: &Option<f32>, replace: &bool, op
             &_ => todo!(),
         } 
     };
-    if operate == false {
+    if operate == false && file != &None {
         println!("No files match {:?}", file); 
+    } else if operate == false{ 
+        println!("No files to operate on");
     } else {
         println!("Operation complete")
     }; 

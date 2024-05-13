@@ -3,8 +3,6 @@ use image::*; // Using image crate: https://github.com/image-rs/image
 use webp::*; // Using webp crate: https://github.com/jaredforth/webp
 use std::path::Path;
 
-use std::fs::File;
-use std::io::Write;
 
 pub struct ImgFile {
     pub name: String,
@@ -23,7 +21,7 @@ impl ImgFile {
        //90f32 
         let webp: WebPMemory = encoder.encode(self.quality);
 
-        let output_path = Path::new("assets").join(&self.name).with_extension("webp");
+        let output_path = Path::new("").join(&self.name).with_extension("webp");
 
         let _ = if self.replace == true {
              std::fs::remove_file(&self.path)
