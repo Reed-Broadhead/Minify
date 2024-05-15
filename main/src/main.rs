@@ -1,35 +1,55 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use std::fs;
+use std::time::Instant;
 
 mod convert;
-
+/// Min is a command line tool designed to convert png and jpg files to webp format.
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-//    #[arg(short, long, default_value_t = 1)]
-//    count: u8,
+    #[command(subcommand)]
+    commands: Option<Commands>,
+}
+#[derive(Subcommand, Debug)]
+enum Commands{
+    Convert {
 
-    #[arg(short, long, default_missing_value = "All")]
-    file: Option<String>,
+        /// The name of the file to convert. Do not include the file extension
+        #[arg(short, long)]
+        file: Option<String>,
 
-    #[arg(short, long)]
-    quality: Option<f32>,
+        /// The quality of the file. A number between 1 and 10, 10 being the highest quality. 
+        #[arg(short, long)]
+        quality: Option<f32>,
 
-    #[arg(short, long)]
-    replace: bool,
-
+        /// Replaces the original file.
+        #[arg(short, long)]
+        replace: bool
+    },
 }
 
 fn main() {
     let args = Args::parse();
 
-    let paths = fs::read_dir("./assets/").unwrap();
-//    println!("{:?}", args.quality);
+    match &args.commands {
+         Some(Commands::Convert {file, quality, replace}) => {
+               process_args( file, quality, replace, "converting", &None); 
+         },
+         None => (),
+        }
+
+}
+fn process_args(file: &Option<String>, quality: &Option<f32>, replace: &bool, operation: &str, file_type: &Option<String>) {
+
+    let paths = fs::read_dir("./").unwrap();
+
+    let mut operate: bool = false;
     
     for path in paths {
+        let new = istant::now();
 
         let path = path.unwrap().path().display().to_string();
-        
+
         let mut place = (0,0);
 
         for (i, item) in path.chars().rev().enumerate() {
@@ -39,27 +59,61 @@ fn main() {
                 _ => continue,
             }
         }
-        
+        if place.0 == 0 || place.1 == 0 {continue}; 
         let img = convert::ImgFile{
             name: (path[place.0..place.1-1]).to_string(), 
             format: (path[place.1..path.len()]).to_string(),
             path: path,
-            replace: args.replace,
-            quality: match args.quality {
+            replace: *replace, 
+            quality: match quality {
                 Some(x) => {
                     if x * 10.0 > 100.0 {
                         println!("{x} is not a valid value. \nplease enter a number between 1 and 10"); 
+                        operate = true;
                         break
                     } else {x * 10.0}
                  },
                 None => 100.0,
             },
         };
-        if img.name != args.file.clone().unwrap() {continue}; 
 
-        if vec!["png", "jpg"].contains(&img.format.to_lowercase().as_str()) { 
-            img.to_webp();
-        };
+        match &file {
+            Some(x) => {
+                if &img.name != x {continue};
+            },
+            None => (),
+        }
+        match operation {
+            "converting" => {
+                if vec!["png", "jpg"].contains(&img.format.to_lowercase().as_str()) { 
+                    img.to_webp();
+                    operate = true
+                } 
+            },
+            "compressing" => {
+               match &file_type {
+                    Some(x) => {
+                        if img.format.to_lowercase() == x.to_lowercase() {
+                            img.compress();
+                            operate = true
+                        }
+                    },
+                    None => {
+                        img.compress();
+                        operate = true 
+                    }
+                } 
+                
+            },
+            &_ => todo!(),
+        } 
+        println!("Time elapsed: {:?}", now.elapsed());
     };
+    if operate == false && file != &None {
+        println!("No files match {:?}", file); 
+    } else if operate == false{ 
+        println!("No files to operate on");
+    } else {
+        println!("Operation complete")
+    }; 
 }
-
