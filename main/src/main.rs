@@ -1,8 +1,9 @@
 use clap::{Parser, Subcommand};
 use std::fs;
+use std::time::Instant;
 
 mod convert;
-
+/// Min is a command line tool designed to convert png and jpg files to webp format.
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
@@ -12,27 +13,19 @@ struct Args {
 #[derive(Subcommand, Debug)]
 enum Commands{
     Convert {
+
+        /// The name of the file to convert. Do not include the file extension
         #[arg(short, long)]
         file: Option<String>,
 
+        /// The quality of the file. A number between 1 and 10, 10 being the highest quality. 
+        #[arg(short, long)]
         quality: Option<f32>,
 
+        /// Replaces the original file.
         #[arg(short, long)]
         replace: bool
     },
-    Compress {
-        #[arg(short, long)]
-        file: Option<String>,
-
-        #[arg(short, long)]
-        quality: Option<f32>,
-
-        #[arg(short, long)]
-        replace: bool,
-
-        #[arg(short, long)]
-        target: Option<String>,
-    }
 }
 
 fn main() {
@@ -41,9 +34,6 @@ fn main() {
     match &args.commands {
          Some(Commands::Convert {file, quality, replace}) => {
                process_args( file, quality, replace, "converting", &None); 
-         },
-         Some(Commands::Compress {file, quality, replace, target }) => {
-             process_args(file, quality, replace, "compressing", target );
          },
          None => (),
         }
@@ -56,6 +46,7 @@ fn process_args(file: &Option<String>, quality: &Option<f32>, replace: &bool, op
     let mut operate: bool = false;
     
     for path in paths {
+        let new = istant::now();
 
         let path = path.unwrap().path().display().to_string();
 
@@ -116,6 +107,7 @@ fn process_args(file: &Option<String>, quality: &Option<f32>, replace: &bool, op
             },
             &_ => todo!(),
         } 
+        println!("Time elapsed: {:?}", now.elapsed());
     };
     if operate == false && file != &None {
         println!("No files match {:?}", file); 
