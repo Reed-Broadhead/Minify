@@ -1,4 +1,5 @@
 This project is not yet complete and is still in development
+
 Template:
 # Min
 Min is a CLI tool that converts PNG and JPG image files into WebP format in large asset folders.
