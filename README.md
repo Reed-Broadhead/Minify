@@ -1,7 +1,8 @@
 # Min
 Min is a CLI tool that converts PNG and JPG image files into WebP format in large asset folders.
 
-Image
+<img width="608" alt="Min_img" src="https://github.com/Reed-Broadhead/Min/assets/109636404/c6f5c6cf-f6d0-46f7-98ff-4eafa2ed3f07">
+
 
 ## Install Guide
 
@@ -14,21 +15,24 @@ If The above command didn't work you can install the [binaries](https://github.c
 
 ``usr/local/bin``
 
+## Usage
 
-## usage
+### commands
 
-```
-Example
-```
+Convert:
 
-## features
+ | Option | Type | feture |
+ | --- | --- | --- |
+ | -f / --file | Sting | Targets single file for conversion |
+ | -q / --quality | int between 1-10 | Determins quality and size of img. Lower quality=smaller file. 10 best |
+ | -r / --replace | flag | Gets rid of origanle file |
+ | -h / --help | flag | Prints help |
 
-* stuff
-* notice
-  - dd
 
 ## bugs/contributions 
 If you find any bugs with the program or think it is missing any features you can contact me on [Linkin](https://www.linkedin.com/in/reed-broadhead/) or [Twitter](). Alternatively, If you could help contributions of any kind are always welcome, Thank you!
 
-
- 
+## Questions
+If you have any other question about min feel free to reach out and i will be happy to help.
+[Linkin](https://www.linkedin.com/in/reed-broadhead/)
+[Email](reedbroadhead@gmail.com)
