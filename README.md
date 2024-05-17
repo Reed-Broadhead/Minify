@@ -30,9 +30,9 @@ Convert:
 
 
 ## bugs/contributions 
-If you find any bugs with the program or think it is missing any features you can contact me on [Linkin](https://www.linkedin.com/in/reed-broadhead/) or [Twitter](). Alternatively, If you could help contributions of any kind are always welcome, Thank you!
+If you find any bugs with the program or think it is missing any features you can contact me on [Linkedin](https://www.linkedin.com/in/reed-broadhead/). Alternatively, If you could help contributions of any kind are always welcome, Thank you!
 
 ## Questions
 If you have any other question about min feel free to reach out and i will be happy to help.
-[Linkin](https://www.linkedin.com/in/reed-broadhead/)
+[Linkedin](https://www.linkedin.com/in/reed-broadhead/)
 [Email](reedbroadhead@gmail.com)
