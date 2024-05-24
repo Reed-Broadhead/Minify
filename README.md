@@ -8,7 +8,7 @@ Min is a CLI tool that converts PNG and JPG image files into WebP format in larg
 
 Quick install:
 ```
-$ curl -sSL https://gist.githubusercontent.com/Reed-Broadhead/551a7b2130c79dc28510f97a98b51755/raw/9d3c42862dab360a2b949de21a489b5e7e8e9cc2/install_min.sh | bash
+curl -sSL https://gist.githubusercontent.com/Reed-Broadhead/551a7b2130c79dc28510f97a98b51755/raw/9d3c42862dab360a2b949de21a489b5e7e8e9cc2/install_min.sh | bash
 ```
 
 If The above command didn't work you can install the [binaries](https://github.com/Reed-Broadhead/Min/releases/download/v0.1.0/min) to:
